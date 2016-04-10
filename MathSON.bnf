@@ -1,0 +1,56 @@
+(* MathSON Level 0 without diffs *)
+
+MathBlock ::= '[]'
+            | '[' CommandList ']';
+
+CommandList ::= Command
+              | Command ',' CommandList;
+
+Command ::= MathString
+          | '{' Members '}';
+
+Members ::= Pair
+          | Pair ',' Members;
+
+Pair ::= CommandKey ':' MathBlock
+       | '_inline_' ':' MathBlock
+       | AttributeKey ':' JSON;
+
+CommandKey ::= [A-Za-z]+;
+
+AttributeKey ::= '$' [A-Za-z]+;
+
+MathString ::= '"' UnicodeChar+ '"';
+
+
+MathBlock ::= '[]'
+            | '['
+              (
+                '"' UnicodeChar+ '"'
+                | '{' [A-Za-z]+ ':' MathBlock (',' [A-Za-z]+ ':' MathBlock)* '}'
+                | '{' '_inline_' ':' MathBlock (',' '_inline_' ':' MathBlock)* '}'
+                | '{' '$' [A-Za-z]+ ':' JSON (',' '$' [A-Za-z]+ ':' JSON)* '}'
+              )
+              (
+                ','
+                (
+                  '"' UnicodeChar+ '"'
+                  | '{' [A-Za-z]+ ':' MathBlock (',' [A-Za-z]+ ':' MathBlock)* '}'
+                  | '{' '_inline_' ':' MathBlock (',' '_inline_' ':' MathBlock)* '}'
+                  | '{' '$' [A-Za-z]+ ':' JSON (',' '$' [A-Za-z]+ ':' JSON)* '}'
+                )
+              )*
+              ']';
+
+
+MathBlock ::= '['
+              (
+                (
+                  '"' UnicodeChar+ '"'
+                  | '{' (A-Za-z+ ':' MathBlock ',')+ '}'
+                  | '{' ('_inline_' ':' MathBlock ',')+ '}'
+                  | '{' ('$' A-Za-z+ ':' JSON ',')+ '}'
+                )
+                ','
+              )*
+              ']';
