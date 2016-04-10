@@ -8,7 +8,7 @@ import chrriis.grammar.model.*;
 import chrriis.grammar.rrdiagram.*;
 
 public class MyScript {
-	public static void main(String [] args) throws IOException {
+  public static void main(String [] args) throws IOException {
 
     // Instantiate converters
     BNFToGrammar grammarGenerator = new BNFToGrammar();
@@ -18,7 +18,7 @@ public class MyScript {
     // Read and convert the grammar file.
     File mathSONbnf = new File(".\\MathSON.bnf");
     FileReader mathSONbnfStream = new FileReader(mathSONbnf);
-		Grammar mathSONGrammar = grammarGenerator.convert(mathSONbnfStream);
+    Grammar mathSONGrammar = grammarGenerator.convert(mathSONbnfStream);
 
     // Generate SVGs
     Rule[] mathSONRules = mathSONGrammar.getRules();
@@ -44,5 +44,5 @@ public class MyScript {
       i += 1;
     }
 
-	}
+  }
 }
