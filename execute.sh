@@ -1,1 +1,1 @@
-javac -classpath "./lib/RRDiagram-0-9-3/RRDiagram.jar" ./MyScript.java
+java -classpath ".:./lib/RRDiagram-0-9-3/RRDiagram.jar" MyScript
