@@ -16,7 +16,7 @@ public class MyScript {
     RRDiagramToSVG svgGenerator = new RRDiagramToSVG();
 
     // Read and convert the grammar file.
-    File mathSONbnf = new File(".\\MathSON.bnf");
+    File mathSONbnf = new File("./MathSON.bnf");
     FileReader mathSONbnfStream = new FileReader(mathSONbnf);
     Grammar mathSONGrammar = grammarGenerator.convert(mathSONbnfStream);
 
@@ -34,7 +34,7 @@ public class MyScript {
     // Write the SVGs to files.
     int i = 0;
     for (String svgString : mathSONSVGs) {
-      String name = ".\\build\\MathSON-Rule-" + i + ".svg";
+      String name = "./build/MathSON-Rule-" + i + ".svg";
       File svgFile = new File(name);
       FileWriter svgWriter = new FileWriter(svgFile);
       svgWriter.write(svgString);

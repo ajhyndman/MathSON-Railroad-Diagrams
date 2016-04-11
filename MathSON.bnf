@@ -46,10 +46,14 @@ MathBlock ::= '[]'
 MathBlock ::= '['
               (
                 (
-                  '"' UnicodeChar+ '"'
-                  | '{' (A-Za-z+ ':' MathBlock ',')+ '}'
-                  | '{' ('_inline_' ':' MathBlock ',')+ '}'
-                  | '{' ('$' A-Za-z+ ':' JSON ',')+ '}'
+                  '"' UnicodeChar+ '"' ','
+                  | '{'
+                  (
+                    (A-Za-z+ ':' MathBlock ',')
+                    | ('_inline_' ':' MathBlock ',')
+                    | ('$' A-Za-z+ ':' JSON ',')
+                  )+
+                  '}'
                 )
                 ','
               )*
